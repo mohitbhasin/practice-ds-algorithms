@@ -2,48 +2,41 @@ import java.util.*;
 
 class CoinChange {
 	public static void main(String args[]) {
-		// int[] coins = {1, 2, 5};
-		// int amount = 11;
-		// int[] coins = {2};
-		// int amount = 3;
-		// int[] coins = {2,5,10,1};
-		// int amount = 27;
-		int[] coins = {186,419,83,408};
-		int amount = 6249;
-		Arrays.sort(coins);
-		System.out.println(coinChange(coins, amount));
+		List<int[]> coinsList = new ArrayList<>();
+        List<Integer> totalList = new ArrayList<>();
+        coinsList.add(new int[]{1,2,5});
+        totalList.add(11);
+        coinsList.add(new int[]{3340,31,4742,2233,9828,4233,54,243});
+        totalList.add(720);
+        coinsList.add(new int[]{2});
+        totalList.add(3);
+        coinsList.add(new int[]{2,5,10,1});
+        totalList.add(27);
+        coinsList.add(new int[]{186,419,83,408});
+        totalList.add(6249);
+		for(int i=0; i<coinsList.size(); i++) {
+            System.out.println("total:"+totalList.get(i)+" count="+coinChange(coinsList.get(i), totalList.get(i)));
+        }
 	}
 
-	public static int coinChange(int[] coins, int amount) {
-		List<Integer> coinsList = new ArrayList<>();
-		for(int coin: coins) {
-			coinsList.add(coin);
-		}
-
-		List<List<Integer>> result = new ArrayList();
-		change(coinsList, new ArrayList<>(), amount, result);
-		int min  = Integer.MAX_VALUE;
-		for(List<Integer> list: result) {
-			min=Math.min(min, list.size());
-		}
-		System.out.println(min);
-
-        return min;
+    public static int coinChange(int[] coins, int total) {
+        int result = helper(coins, total, new int[total+1]);
+        return result==Integer.MAX_VALUE ? -1 : result;
     }
-
-    public static void change(List<Integer> coins, List<Integer> currComb, int amount, List<List<Integer>> result) {
-    	if(amount==0) {
-    		result.add(new ArrayList<Integer>(currComb));
-    		return;
-    	}
-    	if(amount<0) {
-    		return;
-    	}
-
-    	for(int coin: coins) {
-    		currComb.add(coin);
-    		change(coins, currComb, amount-coin, result);
-    		currComb.remove(currComb.size()-1);
-    	}
+    
+    public static int helper(int[] coins, int total, int[] memo) {
+        if(total<0) return Integer.MAX_VALUE;
+        if(total==0) return 0;
+        if(memo[total]!=0) return memo[total];
+        int minCoin = Integer.MAX_VALUE;
+        
+        for(int i=0; i<coins.length; i++) {
+            int val = helper(coins, total-coins[i], memo);
+            if(val!=Integer.MAX_VALUE) {
+                minCoin = Math.min(minCoin, val+1);
+            }
+        }
+        memo[total]=minCoin;
+        return minCoin;
     }
 }

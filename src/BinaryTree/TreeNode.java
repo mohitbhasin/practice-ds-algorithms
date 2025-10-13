@@ -146,6 +146,12 @@ class TreeNode {
 		return root;
 	}
 
+	public TreeNode diameter() {
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		return root;
+	}
+
 	public TreeNode pathSumIII() {
 		TreeNode root = new TreeNode(10);
 		root.left = new TreeNode(5);

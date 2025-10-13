@@ -72,4 +72,9 @@ class TreeNode {
 		root.right.right = new TreeNode(2);
 		return root;
 	}
+	public TreeNode getTree4() {
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		return root;
+	}
 }
