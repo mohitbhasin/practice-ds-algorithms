@@ -27,7 +27,7 @@ class WhereWillBallFall {
             return col;
         }
         int y = grid[row][col] == 1 ? col+1 : col-1;
-
+]
         if(y<0 || y>=grid[0].length || grid[row][col]!=grid[row][y]) {
             return -1;
         }
