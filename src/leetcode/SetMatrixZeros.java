@@ -28,7 +28,6 @@ class SetMatrixZeros {
         for(int r: row) {
         	int temp=0;
         	while(temp<matrix[0].length) {
-       			if(column.contains(temp));
         		matrix[r][temp++]=0;
         	}
         }
@@ -39,7 +38,5 @@ class SetMatrixZeros {
         		matrix[temp++][c]=0;
         	}
         }
-
-
     }
 }

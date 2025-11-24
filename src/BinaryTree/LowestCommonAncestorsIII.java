@@ -17,18 +17,11 @@ class LowestCommonAncestorsIII {
         TreeNode b = q;
         
         while(a!=b) {
-          if(a==null) {
-            a=q;
-          }
-          else if(b==null) {
-            b=p;
-          } else {
-            a=a.parent;
-            b=b.parent;
-          }
+            a = (a.parent==null) ? q : a.parent;
+            b = (b.parent==null) ? p : b.parent;
         }
         return a;
-    }	
+    }
 }
 
 class TreeNode {
