@@ -27,8 +27,12 @@ class ThreeSum {
             int sum = nums[left]+nums[right];
             if(sum==target) {
                 result.add(Arrays.asList(-target, nums[left], nums[right]));
+                // Skip duplicate numbers from left.
+                // After the while loop, left will still be at a duplicate number.
+                // The following if-else's else will increment left again.
                 while(left<right && nums[left]==nums[left+1]) left++;
             }
+            // below conditions will be checked and widow with reduce accordingly.
             if(sum>target) {
                 right--;
             } else {

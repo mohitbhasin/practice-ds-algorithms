@@ -1,7 +1,13 @@
+import java.util.*;
+
 class FindSecondMaximumValue {
 	public static void main(String args[]) {
-		int[] arr = {11,10,2,10,4,5,6,7};
-		System.out.println(findSecondMax(arr));
+		List<int[]> list = new ArrayList<>();
+		list.add(new int[]{11,10,2,10,4,5,6,7});
+		list.add(new int[]{1,1,1,1});
+		
+		list.stream()
+		.forEach(arr -> System.out.println("\nfindSecondMax(): "+findSecondMax(arr)+"\nfindSecondLargest(): "+findSecondLargest(arr)));
 	}
 
 	public static int findSecondMax(int[] arr) {
@@ -21,4 +27,19 @@ class FindSecondMaximumValue {
 		}
 		return secondMax;
 	}
+
+	public static int findSecondLargest(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+
+        for(int val: arr) {
+            if(val>max) {
+                secondMax=max;
+                max=val;
+            } else if(val<max && val>secondMax) {
+                secondMax = val;
+            }
+        }
+        return secondMax==Integer.MIN_VALUE ? -1 : secondMax;
+    }
 }

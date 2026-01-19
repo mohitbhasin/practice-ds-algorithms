@@ -1,12 +1,18 @@
 import java.util.*;
 
+// Inefficient solution.
+// Explore BFS or optimize this DFS
 class RemoveInvalidParentheses {
 	public static void main(String args[]) {
-		String s = "()())()";
-		// String s = "(a)())()";
-		// String s = ")(";
-		// String s = ")(f";
-		System.out.println(removeInvalidParentheses(s));
+        List<String> list = new ArrayList<>();
+        list.add("()())()");
+        list.add("))((");
+        list.add("(a)())()");
+        list.add(")(f");
+
+        for(String s: list) {
+            System.out.println(removeInvalidParentheses(s));
+        }
 	}
 
 	static Set<String> set;
@@ -29,7 +35,7 @@ class RemoveInvalidParentheses {
         // check current index char - if it makes bal +ve ? ignore
                                 // otherwise recursive call with char added and balance updated.
                                 // for non parentheses chars, keep balance unchanged
-        if(balance>0) {
+        if(balance<0) {
         	return;
         }
         if(index>=s.length()) {
@@ -41,9 +47,8 @@ class RemoveInvalidParentheses {
         }
         char c = s.charAt(index);
         int val = 0;
-        val += c=='(' ? -1 : 0;
-        val += c==')' ? 1 : 0;
-        
+        val += c=='(' ? 1 : 0;
+        val += c==')' ? -1 : 0;
         helper(s, curr+c, balance+val, index+1);
         helper(s, curr, balance, index+1);
     }

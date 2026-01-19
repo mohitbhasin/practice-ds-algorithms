@@ -166,6 +166,13 @@ class TreeNode {
 		return root;
 	}
 
+//			      6
+//			   /    \
+//			  2      8
+//       	 / \    / \
+//			0   4  7   9
+//       	   / \
+//			  3   5
 	public TreeNode bstNode() {
 		TreeNode root = new TreeNode(6);
 		root.left = new TreeNode(2);

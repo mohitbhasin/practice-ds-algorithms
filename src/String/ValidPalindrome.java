@@ -1,9 +1,18 @@
+import java.util.*;
+
 class ValidPalindrome {
 	public static void main(String args[]) {
-		// String s = "rac3car";
-		// String s = "A man, a plan, a canal: Panama";
-		String s = "race a car";
-		System.out.println(isPalindrome(s));
+        List<String> strList = new ArrayList<>();
+        strList.add("Madam, in Eden, Im Adam");
+        strList.add("rac3car");
+        strList.add("@#$%^&*");
+        strList.add("A man, a plan, a canal: Panama");
+        strList.add("A1");
+
+        for(String s: strList) {
+            System.out.println(s+" : "+isPalindrome_cleaner(s));
+            // System.out.println(s+" : "+isPalindrome(s));
+        }
 	}
 
 	public static boolean isPalindrome(String s) {
@@ -26,6 +35,30 @@ class ValidPalindrome {
                 l++;
                 r--;
             }
+        }
+        return true;
+    }
+
+    public static boolean isPalindrome_cleaner(String s) {
+        int left = 0;
+        int right = s.length()-1;
+
+        while(left<right) {
+            int leftChar = s.charAt(left);
+            int rightChar = s.charAt(right);
+            if(!Character.isLetterOrDigit(leftChar)) {
+                left++;
+                continue;
+            }
+            if(!Character.isLetterOrDigit(rightChar)) {
+                right--;
+                continue;
+            }
+            if(Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar)) {
+                return false;
+            }
+            left++;
+            right--;
         }
         return true;
     }
